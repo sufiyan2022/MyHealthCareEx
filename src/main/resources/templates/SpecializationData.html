@@ -11,13 +11,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     />
   </head>
-  <body>
+  <body style="background-color:darkcyan;">
       <div class="container">
           <div class="card">
               <div class="card-header bg-primary text-center text-white">
                 <h3>Specialization Data</h3>
               </div>
-              <div class="card-body">
+              <div class="card-body table-hover">
                 <table class="table">
                     <tr class="bg-info text-white">
                         <th>ID</th>
@@ -33,7 +33,7 @@
                     <td th:text="${ob.specNote}"></td>
                     
                     <td>
-                    <a>DELETE </a> | <a> EDIT </a>
+                    <a class="btn btn-danger">DELETE </a> | <a class="btn btn-warning"> EDIT </a>
                     </td>
                     </tr>
                     
