@@ -33,6 +33,7 @@ public class SpecializationController {
 	
 	/*
 	 * 2. On Submit Form save Data
+	 * (to read form data.)
 	 */
 	
 	@PostMapping("/save")
@@ -44,7 +45,7 @@ public class SpecializationController {
 	}
 	
 	/*
-	 *  1.Display all Specializaion
+	 *  3.Display all Specializaion
 	 */
 	
 	 
@@ -67,4 +68,15 @@ public class SpecializationController {
 		attributes.addAttribute("message", "Record ("+id+") is removed");
 		return "redirect:all";
 	}
-}
+	
+	/*
+	 * 5. fetch data into edit page by id
+	 */
+	
+	@GetMapping("/edit")
+	public String showEditPage(@RequestParam Long id,Model model){
+		Specialization spec=service.getOneSpecialization(id);
+		model.addAttribute("specialization", spec);
+		return "SpecializationEdit";
+	}
+}	
