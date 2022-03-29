@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.nareshit.rafey.entity.Specialization;
+import in.nareshit.rafey.exception.SpecializationNotFoundException;
 import in.nareshit.rafey.repo.SpecializationRepository;
 import in.nareshit.rafey.service.ISpecializationService;
 
@@ -28,18 +29,23 @@ public class SpecializationServiceImpl implements ISpecializationService{
 
 	@Override
 	public void removeSpecialization(Long id) {
-		repository.deleteById(id);
+//		repository.deleteById(id);
+		repository.delete(getOneSpecialization(id));
 		
 	}
 
 	@Override
 	public Specialization getOneSpecialization(Long id) {
-		Optional<Specialization> optional=repository.findById(id);
-		if(optional.isPresent()) {
-			return optional.get();
-		}else {
-			return null;
-		}
+//		Optional<Specialization> optional=repository.findById(id);
+//		if(optional.isPresent()) {
+//			return optional.get();
+//		}else {
+////			return null;
+//			throw new SpecializationNotFoundException(id +" Not Found");
+//		}
+		return repository.findById(id).orElseThrow(
+				()->new SpecializationNotFoundException(id+ " Not Found")
+				);
 	}
 
 	@Override
