@@ -57,6 +57,7 @@ public class SpecializationController {
 	public String viewAll(Model model,
 			@RequestParam(value="message", required=false) String message) {
 		List<Specialization> list=service.getAllSpecializations();
+//		System.out.println(list.getClass().getName());
 		model.addAttribute("list", list);
 		model.addAttribute("message", message);
 		return "SpecializationData";
@@ -131,10 +132,12 @@ public class SpecializationController {
 	
 	@GetMapping("/checkCode")
 	@ResponseBody
-	public String validateSpecCode(@RequestParam String code) {
+	public String validateSpecCode(@RequestParam String code, @RequestParam Long id) {
 		String message="";
-		if(service.isSpecCodeExist(code)) {
+		if(service.isSpecCodeExist(code)) {   //register check
 			message=code + ", already exist";
+		}else if(id!=0 && service.isSpecCodeExistForEdit(code, id)) { //edit check
+			message=code + ",already exist";
 		}
 		return message;
 	}

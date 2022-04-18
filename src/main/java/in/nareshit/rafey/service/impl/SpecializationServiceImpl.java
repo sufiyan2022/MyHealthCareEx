@@ -1,7 +1,6 @@
 package in.nareshit.rafey.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,4 +62,10 @@ public class SpecializationServiceImpl implements ISpecializationService{
 //		return repository.getSpecCodeCount(specCode)>0;
 	}
 
+	@Override
+	public boolean isSpecCodeExistForEdit(String specCode, Long id) {
+		return repository.getSpecCodeCountForEdit(specCode,id)>0;
+	}
+	
+	
 }

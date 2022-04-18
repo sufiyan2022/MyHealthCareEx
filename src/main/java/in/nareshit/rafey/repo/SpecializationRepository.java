@@ -9,4 +9,7 @@ public interface SpecializationRepository extends JpaRepository<Specialization, 
 
 	@Query("select count(specCode) from Specialization where specCode=:specCode")
 	Integer getSpecCodeCount(String specCode);
+	
+	@Query("select count(specCode) from Specialization where specCode=:specCode and id!=:id") //:id indicates Named parameter
+	Integer getSpecCodeCountForEdit(String specCode, Long id);
 }
