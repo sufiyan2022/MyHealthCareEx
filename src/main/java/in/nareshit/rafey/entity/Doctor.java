@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,4 +45,20 @@ public class Doctor {
 	
 	@Column(name="doc_note_col")
 	private String note;
+	
+	@Column(name="doc_img_col")
+	private String photoLoc;        //url store to db
+	
+	@Column(name="image")
+	private String photos;			//local storage
+	
+	@Transient
+	private String photosImagePath;	//url store to db for path
+	
+	public String getPhotosImagePath() {
+		if (photos == null || id == null) 
+			return null;
+		return "/user-photos/" + id + "/" + photos;
+		}
+
 }
